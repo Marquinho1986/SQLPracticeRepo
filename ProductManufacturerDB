@@ -93,7 +93,7 @@ SELECT 1 FROM DUAL;
 18) SELECT nombre, precio
     FROM producto
     ORDER BY precio ASC
-    FETCH FIRST 1 ROW ONLY;  (en Oracle la clausula LIMIT NO ESIXTE SE UA FETCH)
+    FETCH FIRST 1 ROW ONLY;  (en Oracle la clausula LIMIT NO ESIXTE SE USA FETCH)
 
 19) SELECT nombre, precio
     FROM producto
