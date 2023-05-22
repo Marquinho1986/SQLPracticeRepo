@@ -246,7 +246,82 @@ SELECT 1 FROM DUAL;
       LEFT JOIN producto p ON f.id = p.id_fabricante
       WHERE p.id IS NULL;
   
-   3)  En esta basae de datos no es posible tener productos que no esten relacionados con un fabricante , esto es debido a que el campo id_fabricante  en la 
+   3)  En esta base de datos no es posible tener productos que no esten relacionados con un fabricante , esto es debido a que el campo id_fabricante  en la 
        tabla producto es una llave foranea que hace referencia al campo id  en la tabla fabricante, y esta restición garantiza  que cada producto debe estar 
-       relacionado con un fabricante  en la tabla "fabricante".
+       relacionado con un fabricante en la tabla "fabricante".
+       
+    parte 4) 
+    
+    1) SELECT COUNT(*) as total_productos
+       FROM producto;
+     
+    2) SELECT COUNT(*) as fabricante
+       FROM fabricante;
+    
+    3) SELECT COUNT(DISTINCT id_fabricante) AS total_valores_distintos
+       FROM producto;
+    
+    4) SELECT AVG(precio) AS media_precio
+       FROM producto;
+    
+    5) SELECT MIN(precio) AS precio_mas_barato
+       FROM producto;
+
+    6) SELECT MAX(precio) AS precio_mas_caro
+       FROM producto;
+    
+    7) SELECT nombre,precio
+       FROM producto
+       WHERE precio = (SELECT MIN(precio) FROM producto)
+
+    8) SELECT nombre,precio
+       FROM producto
+       WHERE precio = (SELECT MAX(precio) FROM producto)
+       
+    9) SELECT SUM(precio) as suma_precios
+       FROM producto;
+     
+   10) SELECT COUNT(*) AS num_productos
+       FROM producto p
+       JOIN fabricante f ON p.id_fabricante=f.id
+       WHERE f.nombre = 'Asus'
+   
+    11) SELECT AVG(p.precio) AS media_precio
+        FROM producto p
+        JOIN fabricante f ON p.id_fabricante=f.id
+        WHERE f.nombre = 'Asus';
+     
+     12) SELECT MIN(p.precio) AS media_precio
+         FROM producto p
+         JOIN fabricante f ON p.id_fabricante=f.id
+         WHERE f.nombre = 'Asus';
+         
+      13) SELECT MAX(p.precio) AS media_precio
+          FROM producto p
+          JOIN fabricante f ON p.id_fabricante=f.id
+          WHERE f.nombre = 'Asus';
+      
+      14) SELECT SUM(p.precio) AS media_precio
+          FROM producto p
+          JOIN fabricante f ON p.id_fabricante=f.id
+          WHERE f.nombre = 'Asus';
+          
+       15) SELECT MAX(p.precio) AS precio_maximo,
+           MIN(p.precio) AS precio_minimo,
+           AVG(p.precio) AS precio_medio,
+           COUNT(P.id)   AS total_productos
+           FROM producto p
+           JOIN fabricante f ON p.id_fabricante=f.id
+           WHERE f.nombre = 'Crucial';
+           
+        16) SELECT f.nombre AS nombre_fabricante, COUNT(p.id) AS total_productos
+            FROM fabricante f
+            LEFT JOIN producto p ON f.id = p.id_fabricante
+            GROUP BY f.nombre
+            ORDER BY total_productos DESC;
+            
+         17) 
+          
+        
+
     
