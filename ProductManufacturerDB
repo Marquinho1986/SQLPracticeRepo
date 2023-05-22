@@ -281,62 +281,62 @@ SELECT 1 FROM DUAL;
     9) SELECT SUM(precio) as suma_precios
        FROM producto;
      
-   10) SELECT COUNT(*) AS num_productos
-       FROM producto p
-       JOIN fabricante f ON p.id_fabricante=f.id
-       WHERE f.nombre = 'Asus'
+    10) SELECT COUNT(*) AS num_productos
+        FROM producto p
+        JOIN fabricante f ON p.id_fabricante=f.id
+        WHERE f.nombre = 'Asus'
    
     11) SELECT AVG(p.precio) AS media_precio
         FROM producto p
         JOIN fabricante f ON p.id_fabricante=f.id
         WHERE f.nombre = 'Asus';
      
-     12) SELECT MIN(p.precio) AS media_precio
+    12) SELECT MIN(p.precio) AS media_precio
          FROM producto p
          JOIN fabricante f ON p.id_fabricante=f.id
          WHERE f.nombre = 'Asus';
          
-      13) SELECT MAX(p.precio) AS media_precio
-          FROM producto p
-          JOIN fabricante f ON p.id_fabricante=f.id
-          WHERE f.nombre = 'Asus';
+    13) SELECT MAX(p.precio) AS media_precio
+        FROM producto p
+        JOIN fabricante f ON p.id_fabricante=f.id
+         WHERE f.nombre = 'Asus';
       
-      14) SELECT SUM(p.precio) AS media_precio
-          FROM producto p
-          JOIN fabricante f ON p.id_fabricante=f.id
-          WHERE f.nombre = 'Asus';
+    14) SELECT SUM(p.precio) AS media_precio
+        FROM producto p
+        JOIN fabricante f ON p.id_fabricante=f.id
+        WHERE f.nombre = 'Asus';
           
-       15) SELECT MAX(p.precio) AS precio_maximo,
-           MIN(p.precio) AS precio_minimo,
-           AVG(p.precio) AS precio_medio,
-           COUNT(P.id)   AS total_productos
-           FROM producto p
-           JOIN fabricante f ON p.id_fabricante=f.id
-           WHERE f.nombre = 'Crucial';
+    15) SELECT MAX(p.precio) AS precio_maximo,
+        MIN(p.precio) AS precio_minimo,
+        AVG(p.precio) AS precio_medio,
+        COUNT(P.id)   AS total_productos
+        FROM producto p
+        JOIN fabricante f ON p.id_fabricante=f.id
+        WHERE f.nombre = 'Crucial';
            
-        16) SELECT f.nombre AS nombre_fabricante, COUNT(p.id) AS total_productos
-            FROM fabricante f
-            LEFT JOIN producto p ON f.id = p.id_fabricante
-            GROUP BY f.nombre
-            ORDER BY total_productos DESC;
+    16) SELECT f.nombre AS nombre_fabricante, COUNT(p.id) AS total_productos
+        FROM fabricante f
+        LEFT JOIN producto p ON f.id = p.id_fabricante
+        GROUP BY f.nombre
+        ORDER BY total_productos DESC;
             
-         17) SELECT f.nombre AS nombre_fabricante,
-             MAX(p.precio) AS precio_maximo,
-             MIN(p.precio) AS precio_minimo,
-             AVG(p.precio) AS precio_medio
-             FROM fabricante f
-             JOIN producto p ON f.id = p.id_fabricante
-             GROUP BY f.nombre;
+    17) SELECT f.nombre AS nombre_fabricante,
+        MAX(p.precio) AS precio_maximo,
+        MIN(p.precio) AS precio_minimo,
+        AVG(p.precio) AS precio_medio
+        FROM fabricante f
+        JOIN producto p ON f.id = p.id_fabricante
+        GROUP BY f.nombre;
              
-          18) SELECT f.nombre AS nombre_fabricante,
-              MAX(p.precio) AS precio_maximo,
-              MIN(p.precio) AS precio_minimo,
-              AVG(p.precio) AS precio_medio,
-              COUNT(*) AS total_productos
-              FROM fabricante f
-              JOIN producto p ON f.id = p.id_fabricante
-              GROUP BY f.nombre
-              HAVING AVG(p.precio) > 200 * 1.08;
+    18) SELECT f.nombre AS nombre_fabricante,
+        MAX(p.precio) AS precio_maximo,
+        MIN(p.precio) AS precio_minimo,
+        AVG(p.precio) AS precio_medio,
+        COUNT(*) AS total_productos
+        FROM fabricante f
+        JOIN producto p ON f.id = p.id_fabricante
+        GROUP BY f.nombre
+        HAVING AVG(p.precio) > 200 * 1.08;
               
               
           
