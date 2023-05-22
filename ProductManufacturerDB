@@ -320,7 +320,23 @@ SELECT 1 FROM DUAL;
             GROUP BY f.nombre
             ORDER BY total_productos DESC;
             
-         17) 
+         17) SELECT f.nombre AS nombre_fabricante,
+             MAX(p.precio) AS precio_maximo,
+             MIN(p.precio) AS precio_minimo,
+             AVG(p.precio) AS precio_medio
+             FROM fabricante f
+             JOIN producto p ON f.id = p.id_fabricante
+             GROUP BY f.nombre;
+             
+          18) SELECT f.nombre AS nombre_fabricante,
+              MAX(p.precio) AS precio_maximo,
+              MIN(p.precio) AS precio_minimo,
+              AVG(p.precio) AS precio_medio,
+              COUNT(*) AS total_productos
+              FROM fabricante f
+              JOIN producto p ON f.id = p.id_fabricante
+              GROUP BY f.nombre
+              HAVING AVG(p.precio) > 200 * 1.08;
           
         
 
