@@ -164,3 +164,46 @@ SELECT 1 FROM DUAL;
     FROM producto
     WHERE precio * 1.08 >= 180
     ORDER BY precio DESC, nombre ASC;
+ 
+ Parte 2)
+ 
+ 1) SELECT producto.nombre,producto.precio,fabricante.nombre AS nombre_fabricante
+    FROM producto
+    JOIN fabricante ON producto.id_fabricante = fabricante.id;
+ 
+ 2) SELECT producto.nombre AS nombre_producto, producto.precio, fabricante.nombre AS nombre_fabricante
+    FROM  producto
+    JOIN fabricante ON producto.id= fabricante.id
+    ORDER BY fabricante.nombre ASC;
+ 
+ 3) SELECT p.id identificador_producto, p.nombre AS nombre_producto, p.id_fabricante, f.nombre AS nombre_fabricante
+    FROM producto p
+    JOIN fabricante f ON p.id=f.id;
+ 
+ 4) SELECT p.nombre AS nombre_producto, p.precio, f.nombre AS nombre_fabricante
+    FROM producto p
+    JOIN fabricante f ON p.id_fabricante=f.id
+    WHERE p.precio = (SELECT MIN(precio) FROM producto);
+
+ 5) SELECT p.nombre AS nombre_producto, p.precio, f.nombre AS nombre_fabricante
+    FROM producto p
+    JOIN fabricante f ON p.id_fabricante=f.id
+    WHERE p.precio = (SELECT MAX(precio) FROM producto);
+    
+ 6) SELECT nombre 
+    FROM producto
+    WHERE id_fabricante = (SELECT id FROM fabricante where nombre = 'Lenovo');
+  
+ 7) SELECT nombre 
+    FROM producto
+    WHERE id_fabricante = (SELECT id FROM fabricante where nombre = 'Crucial') AND producto.precio * 1.08 >  200
+    
+    SELECT p.nombre AS nombre_producto, p.precio
+    FROM producto p
+    JOIN fabricante f ON p.id_fabricante =f.id
+    WHERE f.nombre = 'Crucial' AND p.precio > 200 * 1.08;
+    
+  8) SELECT p.nombre AS nombre_producto, f.nombre AS nombre_fabricante
+     FROM producto p
+     JOIN fabricante f ON p.id_fabricante=f.id
+     WHERE f.nombre = 'Asus' OR f.nombre = 'Hewlett-Packard' OR f.nombre = 'Seagate';
