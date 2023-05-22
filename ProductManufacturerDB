@@ -207,3 +207,46 @@ SELECT 1 FROM DUAL;
      FROM producto p
      JOIN fabricante f ON p.id_fabricante=f.id
      WHERE f.nombre = 'Asus' OR f.nombre = 'Hewlett-Packard' OR f.nombre = 'Seagate';
+     
+  9) SELECT p.nombre AS nombre_producto, f.nombre AS nombre_fabricante
+     FROM producto p
+     JOIN fabricante f ON p.id_fabricante=f.id
+     WHERE f.nombre IN ('Asus' , 'Hewlett-Packard' , 'Seagate');
+   
+  10) SELECT p.nombre AS nombre_producto, f.nombre AS nombre_fabricante
+      FROM producto p
+      JOIN fabricante f ON p.id_fabricante=f.id
+      WHERE LOWER(f.nombre) LIKE '%e';
+    
+  11) SELECT p.nombre AS nombre_producto, f.nombre AS nombre_fabricante
+      FROM producto p
+      JOIN fabricante f ON p.id_fabricante=f.id
+      WHERE LOWER(f.nombre) LIKE '%w%'
+  
+  12) SELECT p.nombre AS nombre_producto, f.nombre AS nombre_fabricante
+      FROM producto p
+      JOIN fabricante f ON p.id_fabricante=f.id
+      WHERE p.precio >= 180 * 1.08
+      ORDER BY p.precio DESC, p.nombre ASC;
+  
+  13)  SELECT DISTINCT f.id,f.nombre
+       FROM fabricante f
+       JOIN producto p ON f.id=p.id_fabricante;
+  
+  parte 3)
+  
+  1) SELECT f.id AS fabricante_id, f.nombre AS fabricante_nombre, COUNT(p.id) AS total_productos
+     FROM fabricante f
+     LEFT JOIN producto p ON f.id = p.id_fabricante
+     GROUP BY f.id, f.nombre
+     ORDER BY f.id;
+   
+   2) SELECT f.id AS fabricante_id, f.nombre AS fabricante_nombre
+      FROM fabricante f
+      LEFT JOIN producto p ON f.id = p.id_fabricante
+      WHERE p.id IS NULL;
+  
+   3)  En esta basae de datos no es posible tener productos que no esten relacionados con un fabricante , esto es debido a que el campo id_fabricante  en la 
+       tabla producto es una llave foranea que hace referencia al campo id  en la tabla fabricante, y esta restición garantiza  que cada producto debe estar 
+       relacionado con un fabricante  en la tabla "fabricante".
+    
