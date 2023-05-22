@@ -337,6 +337,8 @@ SELECT 1 FROM DUAL;
               JOIN producto p ON f.id = p.id_fabricante
               GROUP BY f.nombre
               HAVING AVG(p.precio) > 200 * 1.08;
+              
+              
           
         
 
