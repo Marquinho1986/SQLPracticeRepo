@@ -370,12 +370,47 @@ SELECT 1 FROM DUAL;
           JOIN producto p ON f.id = p.id_fabricante
           GROUP BY f.nombre
        
-      24) SELECT f.nombre AS nombre_fabricante
+      24)  SELECT f.nombre AS nombre_fabricante
            FROM fabricante f
            JOIN producto p ON p.id_fabricante=f.id
            GROUP BY f.nombre
            HAVING AVG(p.precio) >= 150* 1.08;
-
+       
+      25)  SELECT f.nombre AS nombre_fabricante
+           FROM fabricante f
+           JOIN producto p ON p.id_fabricante = f.id
+           GROUP BY f.nombre
+           HAVING COUNT(p.id) >= 2; 
+      
+      26) SELECT f.nombre AS nombre_fabricante, COUNT(p.id) AS numero_productos
+          FROM fabricante f
+          JOIN  producto p ON p.id_fabricante = f.id
+          WHERE p.precio >= 220 * 1.08
+          GROUP BY f.nombre
+          ORDER BY numero_productos DESC;
+          
+      27) SELECT f.nombre AS nombre_fabricante, COUNT(p.id) AS numero_productos
+          FROM fabricante f
+          LEFT JOIN producto p on p.id_fabricante = f.id AND p.precio >= 220
+          GROUP by f. nombre 
+          ORDER BY numero_productos DESC;
+       
+      28) SELECT f.nombre AS nombre_fabricante
+          FROM fabricante f
+          JOIN producto p ON p.id_fabricante = f.id
+          GROUP BY f.nombre
+          HAVING SUM(p.precio) > 1000 * 1.08;
+          
+       
+      29) SELECT p.nombre AS nombre_producto, p.precio, f.nombre AS nombre_fabricante
+          FROM producto p
+          JOIN fabricante f ON p.id_fabricante=f.id
+          WHERE p.precio=(
+          SELECT MAX(precio)
+          FROM producto
+           WHERE id_fabricante = p.id_fabricante
+           )
+           ORDER BY nombre_fabricante DESC;
               
               
           
