@@ -337,6 +337,45 @@ SELECT 1 FROM DUAL;
         JOIN producto p ON f.id = p.id_fabricante
         GROUP BY f.nombre
         HAVING AVG(p.precio) > 200 * 1.08;
+        
+        
+     19) SELECT f.nombre AS nombre_fabricante,
+         MAX(p.precio) AS precio_maximo,
+         MIN(p.precio) AS precio_minimo,
+         AVG(p.precio) AS precio_medio,
+         COUNT(p.id)   AS numero_productos
+         FROM fabricante f
+         JOIN producto p ON f.id = p.id_fabricante
+         GROUP BY f.nombre
+         HAVING AVG(p.precio) > 200 * 1.08;
+         
+         
+      20) SELECT COUNT(*) AS numero_productos
+          FROM producto
+          WHERE precio >= 180* 1.08;
+          
+      
+      21) SELECT f.nombre AS nombre_fabricante, COUNT(*) AS numero_productos
+          FROM fabricante f
+          JOIN producto p ON f.id = p.id_fabricante
+          WHERE p.precio >= 180 * 1.08
+          GROUP BY f.nombre;
+          
+      22) SELECT id_fabricante AS ID , avg(precio) AS precio_medio
+          FROM producto
+          GROUP BY id_fabricante
+       
+      23) SELECT f.nombre AS nombre_fabricante, AVG(p.precio) as precio_medio
+          FROM fabricante f
+          JOIN producto p ON f.id = p.id_fabricante
+          GROUP BY f.nombre
+       
+       24) SELECT f.nombre AS nombre_fabricante
+           FROM fabricante f
+           JOIN producto p ON p.id_fabricante=f.id
+           GROUP BY f.nombre
+           HAVING AVG(p.precio) >= 150* 1.08;
+
               
               
           
