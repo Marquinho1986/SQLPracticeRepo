@@ -370,7 +370,7 @@ SELECT 1 FROM DUAL;
           JOIN producto p ON f.id = p.id_fabricante
           GROUP BY f.nombre
        
-       24) SELECT f.nombre AS nombre_fabricante
+      24) SELECT f.nombre AS nombre_fabricante
            FROM fabricante f
            JOIN producto p ON p.id_fabricante=f.id
            GROUP BY f.nombre
