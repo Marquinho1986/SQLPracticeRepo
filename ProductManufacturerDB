@@ -411,6 +411,156 @@ SELECT 1 FROM DUAL;
            WHERE id_fabricante = p.id_fabricante
            )
            ORDER BY nombre_fabricante DESC;
+     
+     parte 5) 
+     
+     1) SELECT *
+        FROM producto
+        WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre = 'Lenovo');
+     
+     2) SELECT *
+        FROM producto
+        WHERE precio = (SELECT MAX(precio) FROM producto WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre = 'Lenovo'))
+        AND id_fabricante <> (SELECT id FROM fabricante WHERE nombre = 'Lenovo');
+     
+     3) SELECT nombre
+        FROM producto
+        WHERE precio = (SELECT MAX(precio) FROM producto WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre = 'Lenovo'));
+     
+     4) SELECT nombre
+        FROM producto
+        WHERE precio = (SELECT MIN(precio) FROM producto WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre = 'Hewlett-Packard'));
+        
+     5) SELECT *
+        FROM producto
+        WHERE precio >= (SELECT MAX(precio) FROM producto WHERE id_fabricante <> (SELECT id FROM fabricante WHERE nombre = 'Lenovo')) 
+        AND id_fabricante <> (SELECT id FROM fabricante WHERE nombre = 'Lenovo');
+      
+     6) SELECT *
+        FROM producto
+        WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre = 'Asus')
+        AND precio > (SELECT AVG(precio) FROM producto WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre = 'Asus'));
+        
+        parte 6)
+        
+       1) SELECT p.nombre, p.precio
+          FROM producto p
+          WHERE p.precio >= ALL (
+          SELECT precio
+          FROM producto
+          );
+       
+       
+       2) SELECT p.nombre, p.precio
+          FROM producto p
+          WHERE p.precio <= ALL (
+          SELECT precio
+          FROM producto
+         );
+       
+        3) SELECT *
+          FROM producto p1
+          WHERE NOT EXISTS (
+          SELECT 1
+          FROM producto p2
+          WHERE p2.precio > p1.precio
+          ); 
+          
+        
+        4) SELECT nombre
+           FROM fabricante
+           WHERE id = ANY (
+           SELECT id_fabricante
+           FROM producto
+           );
+       
+       parte 7)
+      
+      5) SELECT nombre
+          FROM fabricante
+          WHERE id IN (
+          SELECT id_fabricante
+          FROM producto
+          );
+          
+        6) SELECT nombre
+           FROM fabricante
+           WHERE id NOT IN (
+           SELECT id_fabricante
+           FROM producto
+          );
+          
+         parte 8)
+         
+          1) SELECT nombre
+             FROM fabricante
+             WHERE EXISTS (
+             SELECT 1
+             FROM producto
+             WHERE fabricante.id = producto.id_fabricante
+            );
+            
+          2) SELECT nombre
+             FROM fabricante
+             WHERE NOT EXISTS (
+             SELECT 1
+             FROM producto
+             WHERE fabricante.id = producto.id_fabricante
+             );
+             
+             
+           parte 9)
+           
+           1) SELECT f.nombre AS nombre_fabricante, p.nombre AS nombre_producto, p.precio AS precio_producto
+              FROM fabricante f
+              JOIN producto p ON f.id = p.id_fabricante
+              WHERE p.precio = (
+                    SELECT MAX(precio)
+                    FROM producto
+                    WHERE id_fabricante = f.id
+                 );
+           
+           2) SELECT p.nombre AS nombre_producto, p.precio AS precio_producto
+              FROM producto p
+              WHERE p.precio >= (
+              SELECT AVG(precio)
+              FROM producto
+              WHERE id_fabricante = p.id_fabricante
+              GROUP BY id_fabricante
+            ); 
+            
+           3) SELECT nombre
+              FROM producto
+              WHERE id_fabricante = (
+              SELECT id
+              FROM fabricante
+              WHERE nombre = 'Lenovo'
+              )
+             ORDER BY precio DESC
+             FETCH FIRST 1 ROW ONLY;
+             
+            parte 10)
+            
+            1) SELECT nombre
+               FROM fabricante
+           WHERE (
+               SELECT COUNT(*)
+               FROM producto
+              WHERE id_fabricante = fabricante.id
+            ) = (
+                 SELECT COUNT(*)
+                 FROM producto
+                 WHERE id_fabricante = (
+                 SELECT id
+                 FROM fabricante
+                 WHERE nombre = 'Lenovo'
+              )
+            ) AND nombre <> 'Lenovo';
+
+
+
+
+
               
               
           
